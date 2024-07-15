@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>HeCod | QR Code Generator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <h1 class="brand">QRGen</h1>
+            <h1 class="brand">HeCode</h1>
+            <div class="menu-toggle"><i class="uil uil-bars"></i></div>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Our Project</a></li>
@@ -35,20 +37,24 @@
 
     <footer>
         <div class="container footer-content">
-            <ul class="footer-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Our Project</a></li>
-                <li><a href="#">About Us</a></li>
-            </ul>
             <div class="social-links">
-                <a href="https://github.com" target="_blank">GitHub</a>
-                <a href="https://instagram.com" target="_blank">Instagram</a>
-                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Muhammad-Helmy" target="_blank"><i class="uil uil-github"></i></a>
+                <a href="https://www.linkedin.com/in/muhammad-helmy-fadillah-3525012b6/" target="_blank"><i class="uil uil-linkedin"></i></a>
+                <a href="https://www.instagram.com/helmyheru/" target="_blank"><i class="uil uil-instagram"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
+        let menuToggle = document.querySelector('.menu-toggle');
+        let navLinks = document.querySelector('.nav-links');
+        let dropdown = document.querySelector('.dropdown');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            dropdown.classList.toggle('active');
+        });
+
         let imgBox = document.getElementById("imgBox");
         let qrImage = document.getElementById("qrImage");
         let qrText = document.getElementById("qrText");
