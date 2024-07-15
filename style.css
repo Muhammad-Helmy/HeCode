@@ -170,6 +170,7 @@ footer .footer-links {
     list-style: none;
     display: flex;
     gap: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 footer .footer-links li a {
@@ -183,15 +184,35 @@ footer .footer-links li a:hover {
     color: #a6e1fa;
 }
 
+footer .social-links {
+    display: flex;
+    gap: 1rem;
+}
+
 footer .social-links a {
     color: #fff;
-    margin: 0 0.5rem;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
-    font-size: 1.5rem;
 }
 
 footer .social-links a:hover {
     color: #a6e1fa;
+}
+
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+    }
+    .navbar .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .footer .container {
+        flex-direction: column;
+    }
+    .footer .footer-links {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
 }
