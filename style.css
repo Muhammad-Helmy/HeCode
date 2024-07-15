@@ -5,6 +5,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 body {
     background: #f0f8ff;
     display: flex;
@@ -82,7 +87,21 @@ body {
     text-align: center;
 }
 
+
+
 .main-content {
+    background-image: url(asset/why.png);
+    backdrop-filter: blur( 4px );
+    background-size: cover;
+    background-position: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.container {
     flex: 1;
     display: flex;
     justify-content: center;
