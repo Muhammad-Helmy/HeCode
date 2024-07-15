@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="brand">HeCode</h1>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Our Project</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <div class="qr-generator">
+            <h2>Generate Your QR Code</h2>
+            <p>Enter your text or URL</p>
+            <input type="text" placeholder="Text or URL" id="qrText">
+
+            <div id="imgBox">
+                <img src="" id="qrImage">
+            </div>
+
+            <button onclick="generateQR()">Generate QR Code</button>
+            <button id="downloadButton" style="display:none;" onclick="downloadQR()">Download QR Code</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 HeCode. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/Muhammad-Helmy" target="_blank"><i class="uil uil-github"></i></a>
+                <a href="https://www.linkedin.com/in/muhammad-helmy-fadillah-3525012b6/" target="_blank"><i class="uil uil-linkedin"></i></a>
+                <a href="https://www.instagram.com/helmyheru/" target="_blank"><i class="uil uil-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let imgBox = document.getElementById("imgBox");
+        let qrImage = document.getElementById("qrImage");
+        let qrText = document.getElementById("qrText");
+        let downloadButton = document.getElementById("downloadButton");
+        let timeoutID;
+
+        // Reset qrText value on page reload
+        window.onload = function() {
+            qrText.value = '';
+        }
+
+        function generateQR() {
+            if (qrText.value.length > 0) {
+                // Remove the show-img class if it exists to reset the animation
+                imgBox.classList.remove("show-img");
+
+                // Change the QR code image source
+                qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
+
+                // Trigger reflow to restart the animation
+                void imgBox.offsetWidth;
+
+                // Add the show-img class back to show the animation
+                imgBox.classList.add("show-img");
+
+                // Show the download button after image is loaded
+                qrImage.onload = () => {
+                    downloadButton.style.display = "block";
+                };
+
+                // Clear any existing timeout to reset the timer
+                clearTimeout(timeoutID);
+
+                // Set a timeout to refresh the page after 30 seconds
+                timeoutID = setTimeout(() => {
+                    location.reload();
+                }, 30000);
+            } else {
+                qrText.classList.add("error");
+                setTimeout(() => {
+                    qrText.classList.remove("error");
+                }, 1000);
+            }
+        }
+
+        async function downloadQR() {
+            try {
+                // Fetch QR code image from URL
+                let response = await fetch(qrImage.src);
+                let blob = await response.blob();
+
+                // Create blob URL for the image
+                let url = URL.createObjectURL(blob);
+
+                // Create a temporary link element for automatic download
+                let link = document.createElement("a");
+                link.href = url;
+
+                // Get current date and time
+                let now = new Date();
+                let year = now.getFullYear();
+                let month = now.getMonth() + 1; // Months are zero-indexed
+                let day = now.getDate();
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                let formattedTime = month + '/' + day + '/' + year + ' ' + hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + ampm;
+
+                // Set download filename
+                let filename = `HeCode_${formattedTime.replace(/[^a-z0-9]/gi, '_')}.jpg`;
+                link.download = filename;
+
+                // Add link element to document and click it to start download
+                document.body.appendChild(link);
+                link.click();
+
+                // Remove link element after download is complete
+                document.body.removeChild(link);
+
+                // Revoke URL object to prevent memory leaks
+                URL.revokeObjectURL(url);
+                
+                // Hide the download button after download
+                downloadButton.style.display = "none";
+
+                // Clear the timeout to prevent the page from refreshing after the download
+                clearTimeout(timeoutID);
+            } catch (error) {
+                console.error('Failed to download QR Code:', error);
+            }
+        }
+    </script>
+</body>
+</html>
