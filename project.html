@@ -21,7 +21,7 @@
     </nav>
 
     <div class="container">
-    <h1> Our Website is Under Maintenance</h1>
+    <h1 class="cenro"> Our Website is Under Maintenance</h1>
     </div>
 
     <footer>
@@ -33,6 +33,17 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        let menuToggle = document.querySelector('.menu-toggle');
+        let navLinks = document.querySelector('.nav-links');
+        let dropdown = document.querySelector('.dropdown');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            dropdown.classList.toggle('active');
+        });
+    </script>
 
 </body>
 </html>
