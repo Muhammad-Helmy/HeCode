@@ -11,13 +11,18 @@
     <nav class="navbar">
         <div class="container">
             <h1 class="brand"><a href="index.html">HeCode</a></h1>
-            <div class="menu-toggle"><i class="uil uil-bars"></i></div>
+            <p class="menu-toggle"><i class="uil uil-bars"></i></p>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="project.html">Our Project</a></li>
                 <li><a href="about.html">About Us</a></li>
             </ul>
         </div>
+        <ul class="nav-drop">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="project.html">Our Project</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
     </nav>
 
     <div class="container main-content">
@@ -47,12 +52,10 @@
 
     <script>
         let menuToggle = document.querySelector('.menu-toggle');
-        let navLinks = document.querySelector('.nav-links');
-        let dropdown = document.querySelector('.dropdown');
+        let navDrop = document.querySelector('.nav-drop');
 
         menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            dropdown.classList.toggle('active');
+            navDrop.classList.toggle('active');
         });
 
         let imgBox = document.getElementById("imgBox");
@@ -151,3 +154,4 @@
     </script>
 </body>
 </html>
+    

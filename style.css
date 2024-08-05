@@ -47,6 +47,14 @@ body {
     display: flex;
     gap: 1rem;
 }
+.navbar .nav-drop {
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
 
 .navbar .nav-links li a {
     color: #fff;
@@ -59,39 +67,24 @@ body {
     color: #a6e1fa;
 }
 
-.dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #005f99;
-    z-index: 10;
+.navbar .nav-drop li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
-.dropdown.active {
-    display: block;
+.navbar .nav-drop li a:hover {
+    color: #a6e1fa;
 }
 
-.dropdown .dropdown-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.nav-drop.active {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
 }
-
-.dropdown .dropdown-links li {
-    text-align: center;
-}
-
-
 
 .main-content {
+    backdrop-filter: blur(4px);
     background-image: url(asset/why.png);
-    backdrop-filter: blur( 4px );
     background-size: cover;
     background-position: center;
     flex: 1;
@@ -100,8 +93,10 @@ body {
     align-items: center;
     padding: 2rem 0;
 }
-
-.container {
+.mainn {
+    backdrop-filter: blur(4px);
+    background-size: cover;
+    background-position: center;
     flex: 1;
     display: flex;
     justify-content: center;
@@ -255,17 +250,20 @@ footer .social-links a:hover {
 
 @media (max-width: 768px) {
     .navbar .container {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
+
     .navbar .menu-toggle {
-        display: block;
+        display: flex;
         cursor: pointer;
         color: #fff;
+        justify-content: flex-end;
         font-size: 1.5rem;
         margin-top: 10px;
-        flex-direction: column;
     }
+
     .navbar .nav-links {
         display: none;
         flex-direction: column;
@@ -273,36 +271,23 @@ footer .social-links a:hover {
         width: 100%;
         text-align: center;
     }
-    .navbar .nav-links.active {
-        display: flex;
-    }
-    .dropdown {
+
+    .navbar .nav-drop {
         display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #005f99;
-        z-index: 10;
     }
-    .dropdown.active {
-        display: block;
-    }
-    .dropdown .dropdown-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+
+    .navbar .nav-drop.active {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
+        align-items: center;
+        width: 100%;
     }
-    .dropdown .dropdown-links li {
-        text-align: center;
-    }
+
     .footer .container {
         flex-direction: column;
+        justify-content: end;
     }
+
     .footer .footer-links {
         justify-content: center;
         margin-bottom: 1rem;
